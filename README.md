@@ -61,6 +61,7 @@ In [3]: df3 = pd.DataFrame({'A': ['A8', 'A9', 'A10', 'A11'],
 ```
 In [4]: frames = [df1, df2, df3]
 
-In [5]: result = pd.concat(frames)```
+In [5]: result = pd.concat(frames)
+```
 
 
