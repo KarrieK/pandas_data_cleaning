@@ -17,14 +17,22 @@ First thing we need to do is read our data into pandas and take a look for ourse
 
 `df.head()`
 
+Here we import pandas using the alias 'pd', then we read in our data.
+
+`df.head` - shows us the first 5 rows and headers - it gives us an idea what to expect. 
+`df.head` - shows us the last 5 rows
+
 Take a good look at that data and figure out what values you were expecting and what looks unusual. This is a good time to pull out your data dictionary and start looking though your data. 
+
+`df.shape` - shows us how many observations are in our data set
 
 ##Merging, joining and concatenating data
 
 Sometimes before cleaning our data set we need to build it first, merging, joining and concatenating rows and columns enables us to take multiple csvs and join them together. This saves time when it comes to cleaning our data for analysis
 
-###Concatenating objects
+###Concatenating data frames
 
+Below we have three data frame that df1, df2 and df3 
 ```
 In [1]: df1 = pd.DataFrame({'A': ['A0', 'A1', 'A2', 'A3'],
    ...:                     'B': ['B0', 'B1', 'B2', 'B3'],
@@ -44,12 +52,15 @@ In [3]: df3 = pd.DataFrame({'A': ['A8', 'A9', 'A10', 'A11'],
    ...:                     'B': ['B8', 'B9', 'B10', 'B11'],
    ...:                     'C': ['C8', 'C9', 'C10', 'C11'],
    ...:                     'D': ['D8', 'D9', 'D10', 'D11']},
-   ...:                     index=[8, 9, 10, 11])`
-   ...: `
+   ...:                     index=[8, 9, 10, 11])
+   ...: 
+   ```
+   
+  We want to combine these three data frames into a single data frame that we can analyse. To do this we are going to concatenate them. 
 
+```
 In [4]: frames = [df1, df2, df3]
 
-In [5]: result = pd.concat(frames)
-```
+In [5]: result = pd.concat(frames)```
 
 
