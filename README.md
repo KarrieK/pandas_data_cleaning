@@ -1,4 +1,4 @@
-### Cleaning dirty data using Pandas and Jupyter notebook
+# Cleaning dirty data using Pandas and Jupyter notebook
 
 There is more to life than a million rows - fact. Most data journalists start in excel, then progress to SQL and so forth but once your data swells in size I struggle to clean millions of rows of dirty data. 
 
@@ -23,7 +23,7 @@ Take a good look at that data and figure out what values you were expecting and 
 
 Sometimes before cleaning our data set we need to build it first, merging, joining and concatenating rows and columns enables us to take multiple csvs and join them together. This saves time when it comes to cleaning our data for analysis
 
-#Concatenating objects
+###Concatenating objects
 
 ```
 In [1]: df1 = pd.DataFrame({'A': ['A0', 'A1', 'A2', 'A3'],
