@@ -4,7 +4,7 @@ There is more to life than a million rows - fact. Most data journalists start in
 
 Rather than venturing down the SQL cleaning route and acknowledging that OpenRefine has its limitations I'm putting together a little cheat sheet on how to clean dirty data using pandas in Jupyter notebook. 
 
-##First steps - take a look at that data
+##First steps - importing data and taking a look
 
 It's all well and good saying we're going to clean dirty data but do we even know how it's dirty?
 We need to eyeball that sucker and figure how how it looks. 
@@ -23,6 +23,13 @@ Here we import pandas using the alias 'pd', then we read in our data.
 `df.head` - shows us the last 5 rows
 
 Take a good look at that data and figure out what values you were expecting and what looks unusual. This is a good time to pull out your data dictionary and start looking though your data. 
+
+We also have to consider what time of values each of our columns are stored as. You might see that numbers are imported as text strings making it impossible to perform calculations on them. 
+
+To check this we use the following command:
+`df.types`
+
+This will return a list with your data types in it
 
 `df.shape` - shows us how many observations are in our data set
 
