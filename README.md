@@ -27,6 +27,7 @@ Take a good look at that data and figure out what values you were expecting and 
 We also have to consider what time of values each of our columns are stored as. You might see that numbers are imported as text strings making it impossible to perform calculations on them. 
 
 To check this we use the following command:
+
 `df.types`
 
 This will return a list with your data types in it
