@@ -11,10 +11,10 @@ We need to eyeball that sucker and figure how how it looks.
 
 First thing we need to do is read our data into pandas and take a look for ourselves.
 
-import pandas as pd
+`import pandas as pd`
 
-df = pd.read_csv('/user/home/test.csv')
-df.head()
+`df = pd.read_csv('/user/home/test.csv')`
+`df.head()`
 
 Take a good look at that data and figure out what values you were expecting and what looks unusual. This is a good time to pull out your data dictionary and start looking though your data. 
 
