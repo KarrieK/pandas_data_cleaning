@@ -72,4 +72,43 @@ In [4]: frames = [df1, df2, df3]
 In [5]: result = pd.concat(frames)
 ```
 
+###Cleaning
+
+First thing we do is make a copy of our data 
+
+`df2 = df.copy()`
+
+Maybe our amounts are a string 1,234,222 and we want them as 1234222 so we can convert them into a numeric value. Then we need to remove the commas. To do this we are going to use `str.replace()`
+```
+df2['amount'] = df2['amount'].str.replace(',', '')
+df2.head()
+```
+
+###Converting data types
+
+When you upload your csv to pandas, it might not automatically detect that the correct data type for a number.
+Pandas often reads in numbers in as objects. But we can not perform calculations on objects.
+
+The first thing we do is check our data types 
+
+`df.dtypes`
+
+Date               int64
+Postcode           object
+Names              object
+Amount             object
+
+dtype: object
+
+In order to sum or count the 'Amount' column we need to convert the data type of an integer. 
+
+To do this we use the following code below:
+
+```
+df['Amount'] = pd.to_numeric(df['Amount'])
+df.dtypes
+```
+
+
+
 
