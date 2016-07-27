@@ -114,5 +114,11 @@ Dropping a column is very simple and straightforward in Pandas.
 
 `del df2.['column_name']` 
 
+###Re-ordering columns
+
+Re-ordering columns is very fast and easy. We specify the order we want using double square brackets. 
+
+`df2 = df2[['A', 'B', 'C','D','E']]`
+
 
 
