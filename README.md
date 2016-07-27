@@ -126,3 +126,8 @@ In order to re-name a column header, we need to specify that our current column 
 
 `df2 = df2.rename(columns={'amount_clean': 'amount'})`
 
+Saving data
+
+So your data is nice and clean and now you want to save it to csv. This is pretty easy in Pandas. We need to specify the new name and the encoding. 
+
+`df2.to_csv('clean_data.csv', encoding='utf8')`
