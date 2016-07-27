@@ -120,5 +120,9 @@ Re-ordering columns is very fast and easy. We specify the order we want using do
 
 `df2 = df2[['A', 'B', 'C','D','E']]`
 
+###Renaming column headers
 
+In order to re-name a column header, we need to specify that our current column is equal to a new one. 
+
+`df2 = df2.rename(columns={'amount_clean': 'amount'})`
 
