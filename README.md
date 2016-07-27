@@ -108,7 +108,11 @@ To do this we use the following code below:
 df['Amount'] = pd.to_numeric(df['Amount'])
 df.dtypes
 ```
+###Deleting a column
 
+Dropping a column is very simple and straightforward in Pandas. 
+
+`del df2.['column_name']` 
 
 
 
