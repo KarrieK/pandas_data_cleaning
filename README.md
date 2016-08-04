@@ -112,7 +112,17 @@ df.dtypes
 
 Dropping a column is very simple and straightforward in Pandas. 
 
-`del df2.['column_name']` 
+`del df2['column_name']` 
+
+Be aware that you cannot string multiple column names together like 
+`del df2['col1','col2','col3']`
+
+Instead you need to stack them on top of each other like below
+```
+del df2['column_name'] 
+del df2['column_name'] 
+del df2['column_name']
+```
 
 ###Re-ordering columns
 
