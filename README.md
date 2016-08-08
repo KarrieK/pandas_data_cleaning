@@ -204,7 +204,8 @@ for td in df['Best Response Duration Time']:
     totes.append(td.total_seconds())
 
 len(totes)     
-    ```
+ ```
+ 
 By grabbing the length of my new list I know if I have the correct number of total seconds for the number of rows in my dataframe. 
 
 Now I need to assign that list as a new column in my data frame so I can compare mean response times with postcodes. 
