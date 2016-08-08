@@ -136,7 +136,43 @@ In order to re-name a column header, we need to specify that our current column 
 
 `df2 = df2.rename(columns={'amount_clean': 'amount'})`
 
-Saving data
+###Dates and times
+
+Working with dates and time is pretty tricky in post programming languages, hell it's tricky in excel. What I have found though is that you can extract years, months and days from your date column without too much hassle. 
+
+Say you have a Date Column with dates that look like this: 01/02/2010 or 01-05-2010. We want to extract the month or year without splitting it like a string. 
+
+First thing you need to do is to confirm what sort of data you're working with. Here we use our handy old `dtypes` command again. You should see something like this:
+
+`df2.dtypes`
+```
+DATE                          object
+POSTCODE                      object
+dtype: object
+```
+This means that Pandas is interpreting our data as an object, a container of sorts of data it's not really able to parse. Generally this could mean that our data is a string. 
+
+We can use a python function to confirm that our DATE column is definitely a string:
+
+`type(df2['DATE'][0])`
+`str` is our output confirming our suspicions.
+
+So what we need is a format we can work with, luckily in python there is a great library called Datetime which will do the job for us. 
+
+So back at the top of our program we import Datetime underneath where we previous imported pandas and we re-load our csv
+
+```
+import pandas as pd
+import datetime
+df = pd.read_csv('/user/home/test.csv')
+```
+Then we convert our python object into a Datetime object while at the same time creating a new column called 'Year' in our dataframe:
+
+`df2['YEAR'] = pd.DatetimeIndex(df2['DATE']).year`
+
+Run `df2.head()` after running the conversion above and you should have a new column in your dataframe with years cleanly extracted. 
+
+###Saving data
 
 So your data is nice and clean and now you want to save it to csv. This is pretty easy in Pandas. We need to specify the new name and the encoding. 
 
