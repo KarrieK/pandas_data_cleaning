@@ -212,8 +212,8 @@ Now I need to assign that list as a new column in my data frame so I can compare
 ```
 se = pd.Series(totes)
 df['RESPONSE_TIME_SECONDS'] = se.values
-
 ```
+
 I make sure everything has gone smoothly with df.head() but we should have a new column in our dataframe with the total number of seconds stored as an integer ready to be used for analysis.
 
 ##Saving data
