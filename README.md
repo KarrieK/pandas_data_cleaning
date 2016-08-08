@@ -79,7 +79,7 @@ While I'm a fan of pd.concat you can use .append to join your dataframes togethe
 
 `result = df1.append([df2, df3])`
  
-###Cleaning
+##Cleaning
 
 Before we touch a single object we need to make a copy of our data first
 
@@ -151,9 +151,13 @@ In order to re-name a column header, we need to specify that our current column 
 
 `df2 = df2.rename(columns={'amount_clean': 'amount'})`
 
-###Dealing with dates
+##Dates and time
 
 Working with dates and time is pretty tricky in post programming languages, hell it's tricky in excel. What I have found though is that you can extract years, months and days from your date column without too much hassle. 
+
+We can also convert time stamps into total minutes, hours or seconds using the datetime library. 
+
+###Dealing with dates
 
 Say you have a Date Column with dates that look like this: 01/02/2010 or 01-05-2010. We want to extract the month or year without splitting it like a string. 
 
@@ -212,7 +216,7 @@ df['RESPONSE_TIME_SECONDS'] = se.values
 ```
 I make sure everything has gone smoothly with df.head() but we should have a new column in our dataframe with the total number of seconds stored as an integer ready to be used for analysis.
 
-###Saving data
+##Saving data
 
 So your data is nice and clean and now you want to save it to csv. This is pretty easy in Pandas. We need to specify the new name and the encoding. 
 
