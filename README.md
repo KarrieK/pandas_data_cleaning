@@ -151,7 +151,7 @@ In order to re-name a column header, we need to specify that our current column 
 
 `df2 = df2.rename(columns={'amount_clean': 'amount'})`
 
-###Dates and times
+###Dealing with dates
 
 Working with dates and time is pretty tricky in post programming languages, hell it's tricky in excel. What I have found though is that you can extract years, months and days from your date column without too much hassle. 
 
@@ -186,6 +186,31 @@ Then we convert our python object into a Datetime object while at the same time 
 `df2['YEAR'] = pd.DatetimeIndex(df2['DATE']).year`
 
 Run `df2.head()` after running the conversion above and you should have a new column in your dataframe with years cleanly extracted. 
+###Working with times
+
+So I FOI'd a government department for 911/999 call from a specific city. I need to calculate the mean of my time to figure out which areas get the quickest responsebut my data is a string and looks like this `00:00:00`. I check my data type and yup anothr object. 
+
+Well we need to convert it to something we can work with. Because theoretically our fire department is supposed to arrive to a call within ten minutes, I want the total seconds for each call in a new column. 
+
+To do this I make sure I have imported the library `datetime`like above then I create an empty list and write a for loop using one of the functions .totalseconds() contained within the datetime module. It looks something like this:
+
+```
+totes = []
+for td in df['Best Response Duration Time']:
+    totes.append(td.total_seconds())
+
+len(totes)     
+    ```
+By grabbing the length of my new list I know if I have the correct number of total seconds for the number of rows in my dataframe. 
+
+Now I need to assign that list as a new column in my data frame so I can compare mean response times with postcodes. 
+
+```
+se = pd.Series(totes)
+df['RESPONSE_TIME_SECONDS'] = se.values
+
+```
+I make sure everything has gone smoothly with df.head() but we should have a new column in our dataframe with the total number of seconds stored as an integer ready to be used for analysis.
 
 ###Saving data
 
