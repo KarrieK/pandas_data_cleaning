@@ -1,13 +1,13 @@
 # Cleaning dirty data using Pandas and Jupyter notebook
 
-There is more to life than a million rows - fact. Most data journalists start in excel, then progress to SQL and so forth but once your data swells in size I struggle to clean millions of rows of dirty data. 
+There is more to life than a million rows - fact. Most data journalists start in excel, then progress to SQL and so forth but once your data swells in size most people struggle to clean millions of rows of dirty data. 
 
 Rather than venturing down the SQL cleaning route and acknowledging that OpenRefine has its limitations I'm putting together a little cheat sheet on how to clean dirty data using pandas in Jupyter notebook. 
 
 ##First steps - importing data and taking a look
 
 It's all well and good saying we're going to clean dirty data but do we even know how it's dirty?
-We need to eyeball that sucker and figure how how it looks. 
+We need to eyeball that sucker and figure how it looks. 
 
 First thing we need to do is read our data into pandas and take a look for ourselves.
 
@@ -20,27 +20,31 @@ First thing we need to do is read our data into pandas and take a look for ourse
 Here we import pandas using the alias 'pd', then we read in our data.
 
 `df.head` - shows us the first 5 rows and headers - it gives us an idea what to expect. 
-`df.head` - shows us the last 5 rows
+`df.tail` - shows us the last 5 rows
 
 Take a good look at that data and figure out what values you were expecting and what looks unusual. This is a good time to pull out your data dictionary and start looking though your data. 
 
-We also have to consider what time of values each of our columns are stored as. You might see that numbers are imported as text strings making it impossible to perform calculations on them. 
+We also have to consider what type of values each of our columns are stored as. You might see that numbers are imported as text strings making it impossible to perform calculations on them. 
 
 To check this we use the following command:
 
 `df.types`
 
-This will return a list with your data types in it
+This will return a list with your data types in it - the most commong types are int, float, datetime and object. An object is often an alias for a string. All Pandas knows is that it cant perform mathematical calculations on an object. 
 
-`df.shape` - shows us how many observations are in our data set
+Next we want to know how many columns and rows are in our dataset. To do that we use .shape like below:
+`df.shape` 
+
+Maybe we want to see some key stats in our dataframe without delving too deep, mean values, min and max. Just so we can get a feel of what we're working with. To do that we use the .describe like below:
+`df.describe` 
 
 ##Merging, joining and concatenating data
 
-Sometimes before cleaning our data set we need to build it first, merging, joining and concatenating rows and columns enables us to take multiple csvs and join them together. This saves time when it comes to cleaning our data for analysis
+Sometimes before we can clean up our dataset we need to re-structure or build it; merging, joining and concatenating rows and columns enables us to take multiple csvs and join them together. This saves time when it comes to cleaning our data for analysis
 
 ###Concatenating data frames
 
-Below we have three data frame that df1, df2 and df3 
+Below we have three dataframes df1, df2 and df3 that we want to merge together to create one mighty dataset 
 ```
 In [1]: df1 = pd.DataFrame({'A': ['A0', 'A1', 'A2', 'A3'],
    ...:                     'B': ['B0', 'B1', 'B2', 'B3'],
@@ -64,21 +68,32 @@ In [3]: df3 = pd.DataFrame({'A': ['A8', 'A9', 'A10', 'A11'],
    ...: 
    ```
    
-  We want to combine these three data frames into a single data frame that we can analyse. To do this we are going to concatenate them. 
+  To do this we are going to concatenate them using pd.concat
 
 ```
 In [4]: frames = [df1, df2, df3]
 
 In [5]: result = pd.concat(frames)
 ```
+While I'm a fan of pd.concat you can use .append to join your dataframes together. Check our the code below:
 
+`result = df1.append([df2, df3])`
+ 
 ###Cleaning
 
-First thing we do is make a copy of our data 
+Before we touch a single object we need to make a copy of our data first
 
 `df2 = df.copy()`
 
-Maybe our amounts are a string 1,234,222 and we want them as 1234222 so we can convert them into a numeric value. Then we need to remove the commas. To do this we are going to use `str.replace()`
+Now we can get cracking. Hopefully at this point you have an idea of how your data is dirty and how you can clean it. Howver if you suspect that maybe everything isn't what it seems and that that pesky csv format has led to disjointed data in columns we can check that out. 
+
+To peer into our data in a single column and make sure it only contains dates and no postcodes or amounts and no names we can use the following command:
+
+`df2.DATE.value_counts().sort_index()`
+
+This will give us a list of all the unique entries and the number of each. Any unslightly data whcih has bled in from other columns should be clustered at the bottom ready for you to strip out. 
+
+But maybe we're good to go, but our data types are all wrong. Perhaps our amounts are a string 1,234,222 and we want them as 1234222 so we can convert them into a numeric value. Then we need to remove the commas. To do this we are going to use `str.replace()`
 ```
 df2['amount'] = df2['amount'].str.replace(',', '')
 df2.head()
