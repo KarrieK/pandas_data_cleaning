@@ -123,6 +123,15 @@ To do this we use the following code below:
 df['Amount'] = pd.to_numeric(df['Amount'])
 df.dtypes
 ```
+
+###Inserting a new column with a fixed value
+
+So maybe I want to join two datasets but before I do I need to know which dataset is which so I can still compare them once they've been joined. 
+
+To do that we can create a new column, we specify the index, the header and the values which will remain fixed for the length of the dataframe. 
+
+`df.insert(loc=0, column='Country', value='UK')`
+
 ###Deleting a column
 
 Dropping a column is very simple and straightforward in Pandas. 
