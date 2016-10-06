@@ -38,6 +38,15 @@ Next we want to know how many columns and rows are in our dataset. To do that we
 Maybe we want to see some key stats in our dataframe without delving too deep, mean values, min and max. Just so we can get a feel of what we're working with. To do that we use the .describe like below:
 `df.describe` 
 
+##Slicing your data
+
+The quickest and cleanest way to slice off a chunk of our data is:
+`df[df[col1]]`
+
+It's fast and really powerful, you can also build conditions into it like:
+
+`df[df[col1] > 20]`
+
 ##Merging, joining and concatenating data
 
 Sometimes before we can clean up our dataset we need to re-structure or build it; merging, joining and concatenating rows and columns enables us to take multiple csvs and join them together. This saves time when it comes to cleaning our data for analysis
@@ -101,9 +110,10 @@ df2.head()
 
 Our example above is a pretty straightforward replacement but what if we need to do something a little more complicated? We want to clean only a segment of our data set based on a condition. We need a conditional replacement. 
 
-df.loc[(df['CCG_CLEAN'] == 'LEEDS') & (df['POSTCODE'] == 'LS8'), ['CCG_CLEAN']] = 'LEEDS NORTH CCG'
+```df.loc[(df['CCG'] == 'LEEDS') & (df['POSTCODE'] == 'LS8'), ['CCG']] = 'LEEDS NORTH CCG'
+```
 
-In this code we are selecting the column CCG_CLEAN where the string is Leeds and the column postcode, where the postcode is LS8. Then we are replacing the value Leeds with LEEDS NORTH CCG based upon that criteria. It's a bit clunky to look at but when cleaning it's a slice of magic.  
+In this code we are selecting the column CCG where the string is Leeds and the column postcode, where the postcode is LS8. Then we are replacing the value Leeds with LEEDS NORTH CCG based upon that criteria. It's a bit clunky to look at but when cleaning it's a slice of magic.  
 
 ###Converting data types
 
