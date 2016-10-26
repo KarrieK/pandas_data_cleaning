@@ -110,7 +110,7 @@ df2.head()
 
 Our example above is a pretty straightforward replacement but what if we need to do something a little more complicated? We want to clean only a segment of our data set based on a condition. We need a conditional replacement. 
 
-```df.loc[(df['CCG'] == 'LEEDS') & (df['POSTCODE'] == 'LS8'), ['CCG']] = 'LEEDS NORTH CCG'
+```df.loc[(df['COUNCIL'] == 'LEEDS') & (df['POSTCODE'] == 'LS8'), ['CCG']] = 'LEEDS NORTH CCG'
 ```
 
 In this code we are selecting the column CCG where the string is Leeds and the column postcode, where the postcode is LS8. Then we are replacing the value Leeds with LEEDS NORTH CCG based upon that criteria. It's a bit clunky to look at but when cleaning it's a slice of magic.  
