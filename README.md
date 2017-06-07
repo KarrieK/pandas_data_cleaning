@@ -4,7 +4,7 @@ There is more to life than a million rows - fact. Most data journalists start in
 
 Rather than venturing down the SQL cleaning route and acknowledging that OpenRefine has its limitations I'm putting together a little cheat sheet on how to clean dirty data using pandas in Jupyter notebook. 
 
-##First steps - importing data and taking a look
+## First steps - importing data and taking a look
 
 It's all well and good saying we're going to clean dirty data but do we even know how it's dirty?
 We need to eyeball that sucker and figure how it looks. 
@@ -38,7 +38,7 @@ Next we want to know how many columns and rows are in our dataset. To do that we
 Maybe we want to see some key stats in our dataframe without delving too deep, mean values, min and max. Just so we can get a feel of what we're working with. To do that we use the .describe like below:
 `df.describe` 
 
-##Slicing your data
+## Slicing your data
 
 The quickest and cleanest way to slice off a chunk of our data is:
 `df[df[col1]]`
@@ -47,11 +47,11 @@ It's fast and really powerful, you can also build conditions into it like:
 
 `df[df[col1] > 20]`
 
-##Merging, joining and concatenating data
+## Merging, joining and concatenating data
 
 Sometimes before we can clean up our dataset we need to re-structure or build it; merging, joining and concatenating rows and columns enables us to take multiple csvs and join them together. This saves time when it comes to cleaning our data for analysis
 
-###Concatenating data frames
+### Concatenating data frames
 
 Below we have three dataframes df1, df2 and df3 that we want to merge together to create one mighty dataset 
 ```
@@ -88,7 +88,7 @@ While I'm a fan of pd.concat you can use .append to join your dataframes togethe
 
 `result = df1.append([df2, df3])`
  
-##Cleaning
+## Cleaning
 
 Before we touch a single object we need to make a copy of our data first
 
@@ -114,7 +114,7 @@ Our example above is a pretty straightforward replacement but what if we need to
 
 In this code we are selecting the column CCG where the string is Leeds and the column postcode, where the postcode is LS8. Then we are replacing the value Leeds with LEEDS NORTH CCG based upon that criteria. It's a bit clunky to look at but when cleaning it's a slice of magic.  
 
-###Converting data types
+### Converting data types
 
 When you upload your csv to pandas, it might not automatically detect that the correct data type for a number.
 Pandas often reads in numbers in as objects. But we can not perform calculations on objects.
@@ -139,7 +139,7 @@ df['Amount'] = pd.to_numeric(df['Amount'])
 df.dtypes
 ```
 
-###Inserting a new column with a fixed value
+### Inserting a new column with a fixed value
 
 So maybe I want to join two datasets but before I do I need to know which dataset is which so I can still compare them once they've been joined. 
 
@@ -147,7 +147,7 @@ To do that we can create a new column, we specify the index, the header and the 
 
 `df.insert(loc=0, column='Country', value='UK')`
 
-###Deleting a column
+### Deleting a column
 
 Dropping a column is very simple and straightforward in Pandas. 
 
@@ -163,25 +163,25 @@ del df2['column_name']
 del df2['column_name']
 ```
 
-###Re-ordering columns
+### Re-ordering columns
 
 Re-ordering columns is very fast and easy. We specify the order we want using double square brackets. 
 
 `df2 = df2[['A', 'B', 'C','D','E']]`
 
-###Renaming column headers
+### Renaming column headers
 
 In order to re-name a column header, we need to specify that our current column is equal to a new one. 
 
 `df2 = df2.rename(columns={'amount_clean': 'amount'})`
 
-##Dates and time
+## Dates and time
 
 Working with dates and time is pretty tricky in post programming languages, hell it's tricky in excel. What I have found though is that you can extract years, months and days from your date column without too much hassle. 
 
 We can also convert time stamps into total minutes, hours or seconds using the datetime library. 
 
-###Dealing with dates
+### Dealing with dates
 
 Say you have a Date Column with dates that look like this: 01/02/2010 or 01-05-2010. We want to extract the month or year without splitting it like a string. 
 
@@ -214,7 +214,7 @@ Then we convert our python object into a Datetime object while at the same time 
 `df2['YEAR'] = pd.DatetimeIndex(df2['DATE']).year`
 
 Run `df2.head()` after running the conversion above and you should have a new column in your dataframe with years cleanly extracted. 
-###Working with times
+### Working with times
 
 So I FOI'd a government department for 911/999 call from a specific city. I need to calculate the mean of my time to figure out which areas get the quickest responsebut my data is a string and looks like this `00:00:00`. I check my data type and yup anothr object. 
 
@@ -241,7 +241,7 @@ df['RESPONSE_TIME_SECONDS'] = se.values
 
 I make sure everything has gone smoothly with df.head() but we should have a new column in our dataframe with the total number of seconds stored as an integer ready to be used for analysis.
 
-##Saving data
+## Saving data
 
 So your data is nice and clean and now you want to save it to csv. This is pretty easy in Pandas. We need to specify the new name and the encoding. 
 
