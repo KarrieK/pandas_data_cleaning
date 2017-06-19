@@ -102,6 +102,12 @@ To peer into our data in a single column and make sure it only contains dates an
 
 This will give us a list of all the unique entries and the number of each. Any unslightly data whcih has bled in from other columns should be clustered at the bottom ready for you to strip out. 
 
+Ocassionaly there is a trailing or leading space in the column headers which is making life difficult. To check for this try:
+` df2.columns`
+
+If there is a leading space you can strip it out:
+`df2.rename(columns=lambda x: x.strip(), inplace=True)`
+
 But maybe we're good to go, but our data types are all wrong. Perhaps our amounts are a string 1,234,222 and we want them as 1234222 so we can convert them into a numeric value. Then we need to remove the commas. To do this we are going to use `str.replace()`
 ```
 df2['amount'] = df2['amount'].str.replace(',', '')
