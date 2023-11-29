@@ -28,7 +28,7 @@ We also have to consider what type of values each of our columns are stored as. 
 
 To check this we use the following command:
 
-`df.types`
+`df.dtypes`
 
 This will return a list with your data types in it - the most commong types are int, float, datetime and object. An object is often an alias for a string. All Pandas knows is that it cant perform mathematical calculations on an object. 
 
@@ -246,6 +246,11 @@ df['RESPONSE_TIME_SECONDS'] = se.values
 ```
 
 I make sure everything has gone smoothly with df.head() but we should have a new column in our dataframe with the total number of seconds stored as an integer ready to be used for analysis.
+
+## Investigating your data
+
+You can use df.isin(['%marina%']).any() to search for a specific value accross your data frame 
+
 
 ## Saving data
 
