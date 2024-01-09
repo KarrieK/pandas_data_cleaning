@@ -38,7 +38,7 @@ Next we want to know how many columns and rows are in our dataset. To do that we
 Maybe we want to see some key stats in our dataframe without delving too deep, mean values, min and max. Just so we can get a feel of what we're working with. To do that we use the .describe like below:
 `df.describe` 
 
-## Slicing your data
+## Slicing and filtering your data
 
 The quickest and cleanest way to slice off a chunk of our data is:
 `df[df[col1]]`
@@ -46,6 +46,9 @@ The quickest and cleanest way to slice off a chunk of our data is:
 It's fast and really powerful, you can also build conditions into it like:
 
 `df[df[col1] > 20]`
+
+You can also do comparison operators like less than or equal to <=
+
 
 ## Merging, joining and concatenating data
 
