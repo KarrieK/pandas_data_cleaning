@@ -49,6 +49,13 @@ It's fast and really powerful, you can also build conditions into it like:
 
 You can also do comparison operators like less than or equal to <=
 
+## Highest and lowest values
+
+You can slice your data and find 10 rows with the highest and lowest values using
+
+df['VALUE'].nlargest(n=10)
+
+df.nsmallest(n=5, columns=['VALUE'])
 
 ## Merging, joining and concatenating data
 
